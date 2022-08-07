@@ -1,6 +1,6 @@
-config/local.neon
 /.git/
 /.idea/*
 /vendor/
 /log/
 /temp/
+/app/config/local.neon

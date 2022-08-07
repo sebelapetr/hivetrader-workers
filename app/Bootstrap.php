@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use Nette\Bootstrap\Configurator;
+use Tracy\Debugger;
 
 
 class Bootstrap
@@ -26,9 +27,11 @@ class Bootstrap
 			->register();
 
 		$configurator->addConfig($appDir . '/app/config/common.neon');
-        $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
-        if ($isApi) {
-            $configurator->addConfig($appDir . '/app//config/apitte.neon');
+        if (!isset($_SERVER["SESSIONNAME"]) || $_SERVER["SESSIONNAME"] !== "Console") {
+            $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
+            if ($isApi) {
+                $configurator->addConfig($appDir . '/app//config/apitte.neon');
+            }
         }
         $configurator->addConfig($appDir . '/app//config/local.neon');
 

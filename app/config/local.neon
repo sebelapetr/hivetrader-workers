@@ -5,6 +5,6 @@ dbal:
 	simpleStorageTz: "Europe/Prague"
 	driver: mysqli
 	host: localhost
-	database: star
+	database: hivetrader-workers
 	username: root
-	password: 'admin'
+	password: ''

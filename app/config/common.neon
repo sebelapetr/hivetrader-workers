@@ -1,9 +1,6 @@
 parameters:
 
 extensions:
-    dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
-    orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
-    migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
 
 application:
 	errorPresenter: Error
@@ -14,24 +11,18 @@ application:
 session:
 	expiration: 14 days
 
-
 di:
 	export:
 		parameters: no
 		tags: no
 
-
 services:
 	- App\Router\RouterFactory::createRouter
-	- App\AdminModule\Pdf\ExportPdf
 	latte.templateFactory:
 		factory: Nette\Bridges\ApplicationLatte\TemplateFactory
 
-
-orm:
-    model: App\Model\Orm
-
-migrations:
-	dir: %appDir%/../migrations
-	driver: mysql
-	dbal: nextras
+includes:
+    - Monolog/monolog.neon
+    - Console/console.neon
+    - Nextras/orm.neon
+    - Mpdf/mpdf.neon
