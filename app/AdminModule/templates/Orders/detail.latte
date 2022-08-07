@@ -1,0 +1,60 @@
+{varType App\Model\Order $order}
+{block content}
+<style>
+    .tbl {
+        text-align: left;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-6">
+            <table class="table table-bordered">
+                <tr>
+                    <td>Jméno:</td>
+                    <td>{$order->name}</td>
+                </tr>
+                <tr>
+                    <td>Příjmení:</td>
+                    <td>{$order->surname}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{$order->email}</td>
+                </tr>
+                <tr>
+                    <td>Telefon:</td>
+                    <td>{$order->phone}</td>
+                </tr>
+                <tr>
+                    <td>Adresa:</td>
+                    <td>{$order->getAddress()}</td>
+                </tr>
+                <tr>
+                    <td>Cena celkem s DPH:</td>
+                    <td>{$order->totalPriceWithTax}</td>
+                </tr>
+                <tr>
+                    <td>Platba:</td>
+                    <td>{$order->paymentMethod}</td>
+                </tr>
+                <tr>
+                    <td>Stav platby:</td>
+                    <td>{$order->paymentState}</td>
+                </tr>
+                <tr>
+                    <td>Odeslána:</td>
+                    <td>{$order->sendAt}</td>
+                </tr>
+            </table>
+            {foreach $order->posters as $poster}
+                <a n:href="downloadPdf!, $poster->id" class="btn btn-success">Stáhnout tiskový výstup</a>
+            {/foreach}
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+{varType App\Model\Order $order}
+{block content}
+<style>
+    .tbl {
+        text-align: left;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Datum odeslání</th>
+                        <th>Stav</th>
+                        <th>Cena s DPH</th>
+                        <th>Platba</th>
+                        <th>Platba stav</th>
+                        <th>Kategorie</th>
+                        <th></th>
+                    </tr>
+                    {foreach $orders as $order}
+                        <tr>
+                            <td>{$order->sendAt}</td>
+                            <td>{$order->orderState}</td>
+                            <td>{$order->totalPriceWithTax}</td>
+                            <td>{$order->paymentMethod}</td>
+                            <td>{$order->paymentState}</td>
+                            <td><a n:href="detail, $order->id" class="btn btn-danger">detail</a></td>
+                        </tr>
+                    {/foreach}
+                </table>
+        </div>
+    </div>
+</div>
