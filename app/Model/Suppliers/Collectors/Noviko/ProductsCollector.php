@@ -32,8 +32,8 @@ class ProductsCollector extends BaseCollector
                 'ean' => $product->ean,
                 'name' => $product->productName,
                 'vat' => $product->VAT,
-                'weight' => $product->weight,
-                'to_order' => $product->toOrder,
+                'weight' => strval($product->weight) !== "" ? intval($product->weight) : null,
+                'to_order' => strval($product->toOrder) === "false" ? 0 : 1,
                 'updated_at' => date("Y-m-d H:i:s"),
             ];
 
