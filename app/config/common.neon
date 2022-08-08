@@ -27,3 +27,4 @@ includes:
     - Nextras/orm.neon
     - Connectors/connectors.neon
     - Supplier/Collectors/collectors.neon
+    - Deployer/deployer.neon

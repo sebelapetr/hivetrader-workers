@@ -8,6 +8,12 @@ console:
 
 services:
     consoleLogger: App\Model\Services\ConsoleLogger\ConsoleLoggerService
-    # COMMANDS
+    # **COMMANDS**
+    # --Run test--
+    - App\Console\TestCommand
+    # --Deploy to FTP--
+    - App\Console\DeployCommand
+    # --Collectors--
+    # Noviko
     - App\Console\Suppliers\Collectors\Noviko\NovikoSupplierStockCollector
     - App\Console\Suppliers\Collectors\Noviko\NovikoSupplierProductsCollector

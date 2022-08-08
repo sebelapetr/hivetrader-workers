@@ -3,6 +3,11 @@ parameters:
         noviko:
             username: '16203/SEBELA'
             password: 'vichr'
+    deployer:
+        protocol: "ftp" # ftp|ftps
+        user: "168953_operarius"
+        password: "adockadock"
+        scheme: "37.46.83.192"
 dbal:
 	connectionTz: auto-offset
 	simpleStorageTz: "Europe/Prague"

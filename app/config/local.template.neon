@@ -3,6 +3,11 @@ parameters:
         noviko:
             username: ''
             password: ''
+    deployer:
+        protocol: "" # ftp|ftps
+        user: ""
+        password: ""
+        scheme: ""
 
 dbal:
 	connectionTz: auto-offset
