@@ -8,11 +8,11 @@ use Psr\Log\LoggerInterface;
 class ConsoleLoggerService
 {
     protected LoggerManager $loggerManager;
-    public LoggerInterface $consoleLogger;
+    public LoggerInterface $novikoSupplierCollectorLogger;
 
     public function __construct(LoggerManager $loggerManager)
     {
         $this->loggerManager = $loggerManager;
-        $this->consoleLogger = $loggerManager->get("error");
+        $this->novikoSupplierCollectorLogger = $loggerManager->get("novikoSupplierCollector");
     }
 }

@@ -15,12 +15,12 @@ monolog:
 			processors:
 				-  Monolog\Processor\MemoryPeakUsageProcessor()
 				- Monolog\Processor\IntrospectionProcessor
-		info:
+		novikoSupplierCollector:
 			handlers:
-				- Monolog\Handler\RotatingFileHandler(%appDir%/../log/mono-info.log, 15, Monolog\Logger::INFO)
-		error:
-			handlers:
-				- Monolog\Handler\RotatingFileHandler(%appDir%/../log/mono-error.log, 15, Monolog\Logger::ERROR)
+				- Monolog\Handler\RotatingFileHandler(%appDir%/../log/supplier/collector/noviko/mono-info.log, 30, Monolog\Logger::INFO)
+			processors:
+				-  Monolog\Processor\MemoryPeakUsageProcessor()
+				- Monolog\Processor\IntrospectionProcessor
 	hook:
 		fromTracy: false # enabled by default, log through Tracy into Monolog
 		toTracy: false # enabled by default, log through Monolog into Tracy

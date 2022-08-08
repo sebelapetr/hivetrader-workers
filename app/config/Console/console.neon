@@ -8,6 +8,6 @@ console:
 
 services:
     consoleLogger: App\Model\Services\ConsoleLogger\ConsoleLoggerService
-    #erp.inquiryImporter: App\Model\Erp\Importer\InquiryImporter(@erp.pohodaXml)
     # COMMANDS
-    - App\Console\Foo\FooCommand
+    - App\Console\Suppliers\Collectors\Noviko\NovikoSupplierStockCollector
+    - App\Console\Suppliers\Collectors\Noviko\NovikoSupplierProductsCollector

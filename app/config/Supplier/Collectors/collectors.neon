@@ -1,0 +1,3 @@
+services:
+    novikoProductsCollector: App\Model\Services\Suppliers\Collectors\Noviko\ProductsCollector
+    novikoStockCollector: App\Model\Services\Suppliers\Collectors\Noviko\StockCollector

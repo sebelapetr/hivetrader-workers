@@ -1,0 +1,2 @@
+services:
+    - App\Model\Services\Connectors\NovikoConnector(%connectors.noviko.username%, %connectors.noviko.password%)

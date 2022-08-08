@@ -1,4 +1,8 @@
 parameters:
+    connectors:
+        noviko:
+            username: ''
+            password: ''
 
 dbal:
 	connectionTz: auto-offset
@@ -8,3 +12,4 @@ dbal:
 	database:
 	username:
 	password: ''
+

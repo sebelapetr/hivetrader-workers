@@ -36,8 +36,11 @@
 		"oscarotero/psr7-middlewares": "^3.21",
 		"justinrainbow/json-schema": "^5.2",
 		"contributte/monolog": "^0.5.0",
-		"symfony/lock": "^6.1"
-	},
+		"symfony/lock": "^6.1",
+		"contributte/http": "^0.4.1",
+		"php-curl-class/php-curl-class": "^9.6",
+      "ext-simplexml": "*"
+    },
 	"require-dev": {
 		"nette/tester": "^2.3",
 		"symfony/thanks": "^1"

@@ -1,0 +1,11 @@
+1. Koupit PHP server
+2. nastavit root heslo
+3. nastavit SSH
+4. pripojit se pres ssh
+5. nastavit subdomenu
+6. nastavit ftp
+7. nahrat na ftp soubory
+8. doinstalovat extension
+9. vytvorit DB
+10. prepsat config
+11. nastavit crony

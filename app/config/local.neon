@@ -1,10 +1,13 @@
 parameters:
-
+    connectors:
+        noviko:
+            username: '16203/SEBELA'
+            password: 'vichr'
 dbal:
 	connectionTz: auto-offset
 	simpleStorageTz: "Europe/Prague"
 	driver: mysqli
 	host: localhost
-	database: hivetrader-workers
+	database: hivetrader-data
 	username: root
 	password: ''

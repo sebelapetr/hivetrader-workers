@@ -1,29 +1,37 @@
 <?php declare(strict_types = 1);
 
-namespace App\Console\Foo;
+namespace App\Console\Suppliers\Collectors;
 
 use App\Model\Erp\Exception\LoggedException;
 use App\Model\Orm;
 use App\Model\Services\ConsoleLogger\ConsoleLoggerService;
+use Nette\Database\Connection;
+use Nette\DI\Container;
 use Nextras\Dbal\Utils\DateTimeImmutable;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Output\OutputInterface;
 use Tracy\Debugger;
 
-abstract class BaseCommand extends Command
+abstract class BaseSupplierCollectorsCommand extends Command
 {
 
 	use LockableTrait;
 
 	protected Orm $orm;
 
-    public ConsoleLoggerService $consoleLoggerService;
+    public \Nextras\Dbal\Connection $connection;
 
-	public const FOO_LOCK = 'foo_lock';
+    public string $errorLogFolder;
+    public string $infoLogFolder;
+    public string $launchLogFolder;
 
-	protected static $defaultName = 'erp:foo';
+	public const LOCK_NOVIKO_PRODUCTS = 'lock_noviko_products';
+	public const LOCK_NOVIKO_STOCK = 'lock_noviko_stock';
+
+	protected static $defaultName = 'suppliers:collectors';
 
 	protected const COMMAND_RUN_TIMER = 'commandRun';
 	protected const COMMAND_BATCH_TIMER = 'commandBatch';
@@ -36,11 +44,17 @@ abstract class BaseCommand extends Command
 
 	protected array $config;
 
-	public function __construct(Orm $orm, ConsoleLoggerService $consoleLoggerService)
+	public function __construct(Orm $orm, string $logFolder, Container $container)
 	{
 		parent::__construct(null);
 		$this->orm = $orm;
-        $this->consoleLoggerService = $consoleLoggerService;
+        $this->errorLogFolder = $logFolder . "/error/error-".date("Y-m-d-H");
+        $this->infoLogFolder = $logFolder . "/info/info-".date("Y-m-d-H");
+        $this->launchLogFolder = $logFolder . "/launch/launch-".date("Y-m-d-H");
+
+        /** @var \Nextras\Dbal\Connection $connection */
+        $connection = $container->getByName('dbal.connection');
+        $this->connection = $connection;
 	}
 
 	protected function configure(): void
@@ -101,6 +115,7 @@ abstract class BaseCommand extends Command
 
 	protected function processBatches(OutputInterface $output): array
 	{
+        Debugger::log("launch", $this->launchLogFolder);
 		$batchNumber = 0;
 		$this->startTimer(self::COMMAND_BATCH_TIMER);
 		$res = [];
@@ -113,7 +128,7 @@ abstract class BaseCommand extends Command
 			$processed = $res['Count'] ?? 0;
 			$this->processed += $processed;
 		} catch (\Exception $e) {
-            $this->consoleLoggerService->consoleLogger->error($e->getMessage());
+            Debugger::log($e->getMessage(), $this->errorLogFolder);
 			$output->writeln('Exception: ' . $e->getMessage());
 		}
 

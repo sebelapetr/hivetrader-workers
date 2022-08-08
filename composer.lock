@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a6f40848ea4ef4db893b37f234a45d3",
+    "content-hash": "9f05170a610e686d1080b528d90add1e",
     "packages": [
         {
             "name": "apitte/core",
@@ -736,6 +736,84 @@
                 }
             ],
             "time": "2022-07-08T10:07:27+00:00"
+        },
+        {
+            "name": "contributte/http",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contributte/http.git",
+                "reference": "3f926d0e0ec0807e68714149df55ae0e8e4888a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contributte/http/zipball/3f926d0e0ec0807e68714149df55ae0e8e4888a4",
+                "reference": "3f926d0e0ec0807e68714149df55ae0e8e4888a4",
+                "shasum": ""
+            },
+            "require": {
+                "nette/http": "^3.0.1",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "nette/di": "^3.0.0",
+                "ninjify/nunjuck": "^0.4",
+                "ninjify/qa": "^0.12",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-deprecation-rules": "^0.12",
+                "phpstan/phpstan-nette": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "tracy/tracy": "^2.5.1"
+            },
+            "suggest": {
+                "nette/di": "to use CompilerExtensions"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Contributte\\Http\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milan Felix Šulc",
+                    "homepage": "https://f3l1x.io"
+                }
+            ],
+            "description": "Extra contrib to nette/http",
+            "homepage": "https://github.com/contributte/http",
+            "keywords": [
+                "auth",
+                "curl",
+                "http",
+                "nette",
+                "request",
+                "response"
+            ],
+            "support": {
+                "issues": "https://github.com/contributte/http/issues",
+                "source": "https://github.com/contributte/http/tree/v0.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://contributte.org/partners.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/f3l1x",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-03-12T22:31:30+00:00"
         },
         {
             "name": "contributte/middlewares",
@@ -3667,6 +3745,79 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2020-10-15T08:29:30+00:00"
+        },
+        {
+            "name": "php-curl-class/php-curl-class",
+            "version": "9.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-curl-class/php-curl-class.git",
+                "reference": "d453257b12c9999dc6dfcdb8e7a7d36958f67d86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/d453257b12c9999dc6dfcdb8e7a7d36958f67d86",
+                "reference": "d453257b12c9999dc6dfcdb8e7a7d36958f67d86",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "phpcompatibility/php-compatibility": "*",
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*",
+                "vimeo/psalm": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Curl\\": "src/Curl/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "Zach Borboa"
+                }
+            ],
+            "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
+            "homepage": "https://github.com/php-curl-class/php-curl-class",
+            "keywords": [
+                "API-Client",
+                "api",
+                "class",
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http-client",
+                "http-proxy",
+                "json",
+                "php",
+                "php-curl",
+                "php-curl-library",
+                "proxy",
+                "requests",
+                "restful",
+                "web-scraper",
+                "web-scraping ",
+                "web-service",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/php-curl-class/php-curl-class/issues",
+                "source": "https://github.com/php-curl-class/php-curl-class/tree/9.6.1"
+            },
+            "time": "2022-07-01T00:33:15+00:00"
         },
         {
             "name": "php-http/message-factory",
