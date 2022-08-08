@@ -59,8 +59,6 @@ deployer:
 
 			before:
 				#- [@\TestBeforeListener, onBefore]
-            afterUpload:
-				#- [@\TestBeforeListener, onBefore]
 			after:
 				#- [@\TestAfterListener, onAfter]
 

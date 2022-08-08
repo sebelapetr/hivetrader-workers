@@ -8,5 +8,5 @@ interface ICollector
 {
     public function collect(Connection $dbConnection, string $logFolder): void;
 
-    public function processData(\SimpleXMLElement $data): void;
+    public function processData(string $tmpFile): bool;
 }

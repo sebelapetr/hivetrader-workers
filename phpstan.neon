@@ -11,3 +11,5 @@ parameters:
 	paths:
 		- app
 	checkTooWideReturnTypesInProtectedAndPublicMethods: true
+	ignoreErrors:
+		- '#Constant ROOT_DIR not found.#'

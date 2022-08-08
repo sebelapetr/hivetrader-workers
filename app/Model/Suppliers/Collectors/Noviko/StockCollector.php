@@ -10,26 +10,42 @@ class StockCollector extends BaseCollector
 {
     public function collect(Connection $dbConnection, string $logFolder): void
     {
+        $this->dbConnection = $dbConnection;
         $url = "restapi/b2b/zbozi/stav";
         $this->getData($dbConnection, $url, $logFolder);
     }
 
-    public function processData(\SimpleXMLElement $data): void
-    {;
+    public function processData(string $tmpFile): bool
+    {
+        $xml = file_get_contents($tmpFile);
+        if ($xml === false) {
+            return false;
+        }
+        $data = new \SimpleXMLElement($xml);
+
         foreach ($data->productStav as $stav) {
+
             $supplierId = strval($stav->productId);
+
             $productId = $this->dbConnection->query("
                 SELECT id FROM supplier_products WHERE supplier_id = $supplierId
             ")->fetchField(0);
 
             if ($productId !== null) {
                 $productId = strval($productId);
-                $this->dbConnection->query("
-                    INSERT INTO `stock` (`min_stock_level`, `productId`, `created_at`, `to_order`)
-                    VALUES ($stav->minStockLevel, $productId, now(), $stav->toOrder);
-                ");
+                $values = [
+                    "supplier_product_id" => $productId,
+                    "min_stock_level" => $stav->minStockLevel,
+                    "created_at" => date("Y-m-d H:i:s")
+                ];
+                $this->dbConnection->query('INSERT INTO supplier_product_history %values', $values);
+            } else {
+                // todo MISSING PRODUCT LOG
             }
 
         }
+
+        // todo PROCESSED 1000 ITEMS
+        return true;
     }
 }

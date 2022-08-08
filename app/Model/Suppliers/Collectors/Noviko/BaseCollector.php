@@ -3,6 +3,7 @@
 namespace App\Model\Services\Suppliers\Collectors\Noviko;
 
 use App\Model\Services\Connectors\NovikoConnector;
+use Nette\Utils\Random;
 use Nextras\Dbal\Connection;
 use Tracy\Debugger;
 
@@ -28,7 +29,26 @@ abstract class BaseCollector implements ICollector
             Debugger::log($connection->response, $errorLogFolder);
             Debugger::log('----------------------------------------------------', $errorLogFolder);
         } else {
-            $this->processData($connection->response);
+            $response = $connection->response;
+            if ($response instanceof \SimpleXMLElement) {
+                $response = $response->asXML();
+            }
+            $fileName = Random::generate(15).'.xml';
+            $tmpFile = ROOT_DIR . '/import-data/' . $fileName;
+            if (file_put_contents ($tmpFile, $response) !== false) {
+                $processData = $this->processData($tmpFile);
+                if ($processData === true) {
+                    unlink($tmpFile);
+                } else {
+                    Debugger::log('Error processing data file ' . $fileName, $errorLogFolder);
+                    Debugger::log($connection->response, $errorLogFolder);
+                    Debugger::log('----------------------------------------------------', $errorLogFolder);
+                }
+            } else {
+                Debugger::log('Error file put contents of ' . $fileName, $errorLogFolder);
+                Debugger::log($connection->response, $errorLogFolder);
+                Debugger::log('----------------------------------------------------', $errorLogFolder);
+            }
         }
 
         $connection->close();
