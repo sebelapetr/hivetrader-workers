@@ -16,7 +16,7 @@ abstract class BaseCollector implements ICollector
         $this->connector = $connector;
     }
 
-    public function getData($dbConnection, $url, $logFolder)
+    public function getData(Connection $dbConnection, string $url, string $logFolder): void
     {
         $errorLogFolder = $logFolder . "/error/error-".date("Y-m-d-H");
         $this->dbConnection = $dbConnection;

@@ -7,10 +7,11 @@ namespace App\FrontModule\Presenters;
 
 class HomepagePresenter extends BasePresenter
 {
-    public function actionDefault()
+    public function actionDefault(): void
     {
         echo "It works";
         die;
+        /*
         $url = 'https://www.noviko-online.cz:8081/restapi/b2b/zbozi/';
 
 //open connection
@@ -30,6 +31,6 @@ class HomepagePresenter extends BasePresenter
             echo 'Success!';
         } else {
             echo 'Failed';
-        }
+        }*/
     }
 }

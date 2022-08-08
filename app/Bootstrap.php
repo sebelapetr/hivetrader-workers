@@ -29,10 +29,7 @@ class Bootstrap
             ->register();
 
         $configurator->addConfig($appDir . '/app/config/common.neon');
-        if (isset($_SERVER['REQUEST_URI']) && (substr($_SERVER['REQUEST_URI'], 0, 4) === '/api')) {
-            $configurator->addConfig($appDir . '/app//config/apitte.neon');
-        }
-        $configurator->addConfig($appDir . '/app//config/local.neon');
+        $configurator->addConfig($appDir . '/app/config/local.neon');
 
         return $configurator;
     }

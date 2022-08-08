@@ -42,8 +42,6 @@ abstract class BaseSupplierCollectorsCommand extends Command
 
 	protected int $processed = 0;
 
-	protected array $config;
-
 	public function __construct(Orm $orm, string $logFolder, Container $container)
 	{
 		parent::__construct(null);
@@ -72,6 +70,9 @@ abstract class BaseSupplierCollectorsCommand extends Command
 		}
 	}
 
+    /**
+     * @param array<string, mixed> $res
+     */
 	protected function writeResult(array $res, OutputInterface $output): void
 	{
 		foreach ($res as $key => $value) {
@@ -107,12 +108,18 @@ abstract class BaseSupplierCollectorsCommand extends Command
 		$output->writeln('DONE');
 	}
 
+    /**
+     * @return array<mixed>
+     */
 	protected function processImportBatches(OutputInterface $output): array
 	{
 		$res = $this->processBatches($output);
 		return $res;
 	}
 
+    /**
+     * @return array<mixed>
+     */
 	protected function processBatches(OutputInterface $output): array
 	{
         Debugger::log("launch", $this->launchLogFolder);

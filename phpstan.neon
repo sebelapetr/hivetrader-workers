@@ -1,0 +1,13 @@
+includes:
+	- vendor/phpstan/phpstan-nette/extension.neon
+
+parameters:
+	scanDirectories:
+		- app
+	fileExtensions:
+		- php
+		- phpt
+	level: 9
+	paths:
+		- app
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true

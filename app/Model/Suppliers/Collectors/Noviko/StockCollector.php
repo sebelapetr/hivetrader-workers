@@ -17,14 +17,19 @@ class StockCollector extends BaseCollector
     public function processData(\SimpleXMLElement $data): void
     {;
         foreach ($data->productStav as $stav) {
+            $supplierId = strval($stav->productId);
             $productId = $this->dbConnection->query("
-                SELECT id FROM supplier_products WHERE supplier_id = $stav->productId
+                SELECT id FROM supplier_products WHERE supplier_id = $supplierId
             ")->fetchField(0);
 
-            $this->dbConnection->query("
-                INSERT INTO `stock` (`min_stock_level`, `productId`, `created_at`, `to_order`)
-                VALUES ($stav->minStockLevel, $productId, now(), $stav->toOrder);
-            ");
+            if ($productId !== null) {
+                $productId = strval($productId);
+                $this->dbConnection->query("
+                    INSERT INTO `stock` (`min_stock_level`, `productId`, `created_at`, `to_order`)
+                    VALUES ($stav->minStockLevel, $productId, now(), $stav->toOrder);
+                ");
+            }
+
         }
     }
 }

@@ -25,6 +25,5 @@ includes:
     - Monolog/monolog.neon
     - Console/console.neon
     - Nextras/orm.neon
-    - Mpdf/mpdf.neon
     - Connectors/connectors.neon
     - Supplier/Collectors/collectors.neon
