@@ -10,7 +10,7 @@ parameters:
 
 deployer:
 	config:
-		mode: test
+		mode: deploy
 		logFile: %appDir%/../log/deployer/deployer.log
 		tempDir: %appDir%/../temp
 		colors: yes
@@ -26,12 +26,12 @@ deployer:
 		operarius:
 			remote: %deploy.protocol%://%deploy.user%:%deploy.password%@%deploy.scheme%
 			local: %wwwDir%
-			testMode: true
+			testMode: false
 
-			allowdelete: on
-			passiveMode: on
-			preprocess: off
-			deployFile: ".deployment"
+			allowdelete: true
+			passiveMode: true
+			preprocess: false
+			deployFile: deploy.ini
 
 			ignore:
 				# Common
@@ -39,14 +39,27 @@ deployer:
 				- .idea*
 				- composer.*
 				- .htaccess
+				- readme.md
+				- deploy.ini.tmp
 
 				# Application
+				- /_doc
 				- /app/config/local.neon
 				- /bin
-				- /log/*
-				- /temp/*
+				- /db
+				- /log
+				- /temp
+				- /www/css/*
+				- /www/fonts/*
+				- /www/js/*
+				- tunnel.bat
+
+				#- /vendor/composer/tmp*
+				- /vendor
 
 			before:
+				#- [@\TestBeforeListener, onBefore]
+            afterUpload:
 				#- [@\TestBeforeListener, onBefore]
 			after:
 				#- [@\TestAfterListener, onAfter]
