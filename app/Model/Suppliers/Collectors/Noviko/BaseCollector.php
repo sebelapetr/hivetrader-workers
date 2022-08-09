@@ -21,11 +21,7 @@ abstract class BaseCollector implements ICollector
     {
         $this->dbConnection = $dbConnection;
         $connection = $this->connector->getConnection();
-        //$connection->get($url);
-        $connection->error = true;
-        $connection->errorCode = 403;
-        $connection->errorMessage = "HTTP/1.1 403 Forbidden";
-        $connection->response = "User '16203/SEBELA' max hits reached! Prekrocen max. pocet volani metody 'B2B:getStav' za dany interval. Max 20x za 1d0h0m0s /od:Mon Aug 08 12:08:11 CEST 2022/";
+        $connection->get($url);
 
         if ($connection->error) {
             throw new \Exception($connection->errorCode . ': ' . $connection->errorMessage . " - " . $connection->response);
