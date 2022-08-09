@@ -17,17 +17,18 @@ abstract class BaseCollector implements ICollector
         $this->connector = $connector;
     }
 
-    public function getData(Connection $dbConnection, string $url, string $logFolder): void
+    public function getData(Connection $dbConnection, string $url): void
     {
-        $errorLogFolder = $logFolder . "/error/error-".date("Y-m-d-H");
         $this->dbConnection = $dbConnection;
         $connection = $this->connector->getConnection();
-        $connection->get($url);
+        //$connection->get($url);
+        $connection->error = true;
+        $connection->errorCode = 403;
+        $connection->errorMessage = "HTTP/1.1 403 Forbidden";
+        $connection->response = "User '16203/SEBELA' max hits reached! Prekrocen max. pocet volani metody 'B2B:getStav' za dany interval. Max 20x za 1d0h0m0s /od:Mon Aug 08 12:08:11 CEST 2022/";
 
         if ($connection->error) {
-            Debugger::log('Error: ' . $connection->errorCode . ': ' . $connection->errorMessage, $errorLogFolder);
-            Debugger::log($connection->response, $errorLogFolder);
-            Debugger::log('----------------------------------------------------', $errorLogFolder);
+            throw new \Exception($connection->errorCode . ': ' . $connection->errorMessage . " - " . $connection->response);
         } else {
             $response = $connection->response;
             if ($response instanceof \SimpleXMLElement) {
@@ -40,14 +41,10 @@ abstract class BaseCollector implements ICollector
                 if ($processData === true) {
                     unlink($tmpFile);
                 } else {
-                    Debugger::log('Error processing data file ' . $fileName, $errorLogFolder);
-                    Debugger::log($connection->response, $errorLogFolder);
-                    Debugger::log('----------------------------------------------------', $errorLogFolder);
+                    throw new \Exception('Error processing data file ' . $fileName);
                 }
             } else {
-                Debugger::log('Error file put contents of ' . $fileName, $errorLogFolder);
-                Debugger::log($connection->response, $errorLogFolder);
-                Debugger::log('----------------------------------------------------', $errorLogFolder);
+                throw new \Exception('Error file put contents of ' . $fileName);
             }
         }
 

@@ -6,7 +6,7 @@ use Nextras\Dbal\Connection;
 
 interface ICollector
 {
-    public function collect(Connection $dbConnection, string $logFolder): void;
+    public function collect(Connection $dbConnection): void;
 
     public function processData(string $tmpFile): bool;
 }

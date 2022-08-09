@@ -50,7 +50,7 @@ final class NovikoSupplierProductsCollector extends BaseSupplierCollectorsComman
 
     protected function processBatch(OutputInterface $output, int $batchNumber): array
     {
-        $this->productsCollector->collect($this->connection, $this->logFolder);
+        $this->productsCollector->collect($this->connection);
         return [
             "status" => "OK"
         ];

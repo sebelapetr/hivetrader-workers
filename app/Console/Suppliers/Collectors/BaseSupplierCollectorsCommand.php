@@ -137,6 +137,7 @@ abstract class BaseSupplierCollectorsCommand extends Command
 		} catch (\Exception $e) {
             Debugger::log($e->getMessage(), $this->errorLogFolder);
 			$output->writeln('Exception: ' . $e->getMessage());
+            throw $e;
 		}
 
 		$this->printTime(self::COMMAND_BATCH_TIMER, $output);

@@ -49,7 +49,7 @@ final class NovikoSupplierStockCollector extends BaseSupplierCollectorsCommand
 
     protected function processBatch(OutputInterface $output, int $batchNumber): array
     {
-        $this->stockCollector->collect($this->connection, $this->logFolder);
+        $this->stockCollector->collect($this->connection);
         return [
             "status" => "OK"
         ];

@@ -6,11 +6,11 @@ use Nextras\Dbal\Connection;
 
 class ProductsCollector extends BaseCollector
 {
-    public function collect(Connection $dbConnection, string $logFolder): void
+    public function collect(Connection $dbConnection): void
     {
         $this->dbConnection = $dbConnection;
         $url = "restapi/b2b/zbozi";
-        $this->getData($dbConnection, $url, $logFolder);
+        $this->getData($dbConnection, $url);
     }
 
     public function processData(string $tmpFile): bool
