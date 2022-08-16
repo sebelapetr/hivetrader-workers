@@ -17,3 +17,6 @@ services:
     # Noviko
     - App\Console\Suppliers\Collectors\Noviko\NovikoSupplierStockCollector
     - App\Console\Suppliers\Collectors\Noviko\NovikoSupplierProductsCollector
+    # --MOTHER TEMP--
+    # Noviko
+    - App\Console\Suppliers\MotherTemp\Noviko\NovikoSupplierStockChangesWorker

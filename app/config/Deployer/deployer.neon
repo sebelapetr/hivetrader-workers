@@ -58,9 +58,7 @@ deployer:
 				- /vendor
 
 			before:
-				#- [@\TestBeforeListener, onBefore]
 			after:
-				#- [@\TestAfterListener, onAfter]
 
 			purge:
 				- temp/cache

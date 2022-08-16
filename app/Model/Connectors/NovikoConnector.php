@@ -21,6 +21,8 @@ class NovikoConnector
         $curl = new Curl();
         $curl->setBasicAuthentication($this->username, $this->password);
         $curl->setUrl("https://www.noviko-online.cz:8081/");
+        $curl->setTimeout(120);
+        $curl->setConnectTimeout(120);
         return $curl;
     }
 }

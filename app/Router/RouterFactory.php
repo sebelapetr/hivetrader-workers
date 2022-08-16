@@ -17,12 +17,8 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 
-
-        $router[] = $routerAdmin = new RouteList("Admin");
-        $routerAdmin[] = new Route('admin/<presenter>/<action>[/<id>]', 'Login:default');
-
-        $router[] = $routerFront = new RouteList("Front");
-        $routerFront->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
+        $router[] = $routerModule = new RouteList("Module");
+        $routerModule->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
 
 		return $router;
 	}
