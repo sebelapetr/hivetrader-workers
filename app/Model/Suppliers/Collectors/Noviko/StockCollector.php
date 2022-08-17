@@ -28,7 +28,7 @@ class StockCollector extends BaseCollector
             $supplierId = strval($stav->productId);
 
             $productId = $this->dbConnection->query("
-                SELECT id FROM supplier_products WHERE supplier_id = $supplierId
+                SELECT id FROM supplier_products WHERE supplier_internal_id = $supplierId
             ")->fetchField(0);
 
             if ($productId !== null) {
