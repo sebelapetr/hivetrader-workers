@@ -24,6 +24,7 @@ class ProductsCollector extends BaseCollector
         foreach ($data->product as $product) {
 
             $values = [
+                'supplier_id' => 1,
                 'supplier_internal_id' => $product->productInternalId,
                 'catalog_price_without_vat' => $product->catalogPrice,
                 'catalog_price_with_vat' => $product->catalogPriceVAT,
